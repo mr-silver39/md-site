@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090c0a">
+<meta name="description" content="MD-SITE — создание современных сайтов для бизнеса, обновление и поддержка.">
+<title>MD-SITE — Разработка сайтов</title>
+
+<style>
+:root {
+  --bg:#090c0a;
+  --panel:#111713;
+  --panel2:#151d17;
+  --green:#69df91;
+  --green2:#39bd6b;
+  --white:#f4f7f4;
+  --muted:#9aa69d;
+  --border:#26342a;
+}
+* {margin:0;padding:0;box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:90px}
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a {text-decoration:none;color:inherit}
+button,input,select,textarea {font:inherit}
+.container {width:min(1160px,90%);margin:auto}
+
+/* HEADER */
+
+header {
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(9,12,10,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav {
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+.logo {
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  white-space:nowrap;
+}
+.logo span {color:var(--green)}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:27px;
+}
+.nav-links a {
+  font-size:13px;
+  color:#c0c9c2;
+  transition:.2s;
+}
+.nav-links a:hover {color:var(--green)}
+.menu-btn {
+  display:none;
+  background:transparent;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:9px 12px;
+  font-size:21px;
+  cursor:pointer;
+}
+
+/* BUTTONS */
+
+.btn {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  background:var(--green);
+  color:#08120b;
+  border:1px solid var(--green);
+  border-radius:9px;
+  padding:14px 23px;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  transition:.25s;
+}
+.btn:hover {
+  background:transparent;
+  color:var(--green);
+  transform:translateY(-2px);
+}
+.btn-outline {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:14px 23px;
+  border:1px solid #405044;
+  border-radius:9px;
+  color:white;
+  font-size:14px;
+  transition:.25s;
+}
+.btn-outline:hover {
+  border-color:var(--green);
+  color:var(--green);
+}
+
+/* HERO */
+
+.hero {
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding:100px 0;
+}
+.hero:before {
+  content:"";
+  position:absolute;
+  width:550px;
+  height:550px;
+  border-radius:50%;
+  background:#38c96a20;
+  filter:blur(110px);
+  right:-150px;
+  top:20px;
+  pointer-events:none;
+}
+.hero-content {position:relative;z-index:2}
+.eyebrow {
+  color:var(--green);
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+.hero h1 {
+  font-size:clamp(43px,7vw,78px);
+  line-height:1.08;
+  letter-spacing:-3px;
+  max-width:900px;
+  margin:25px 0;
+}
+.hero h1 span {color:var(--green)}
+.hero p {
+  color:var(--muted);
+  max-width:600px;
+  font-size:17px;
+  margin-bottom:34px;
+}
+.hero-actions {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.hero-bottom {
+  display:flex;
+  gap:35px;
+  flex-wrap:wrap;
+  margin-top:75px;
+  padding-top:25px;
+  border-top:1px solid var(--border);
+}
+.hero-stat strong {
+  display:block;
+  color:var(--green);
+  font-size:14px;
+}
+.hero-stat span {
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* SECTIONS */
+
+section {padding:90px 0}
+.section-label {
+  color:var(--green);
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:2.5px;
+}
+h2 {
+  font-size:clamp(30px,4vw,45px);
+  line-height:1.2;
+  letter-spacing:-1px;
+  margin:12px 0;
+}
+.section-desc {
+  color:var(--muted);
+  max-width:650px;
+  font-size:15px;
+}
+
+/* SERVICES */
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:40px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+  transition:.3s;
+}
+.card:hover {
+  transform:translateY(-5px);
+  border-color:#69df9170;
+  background:var(--panel2);
+}
+.card-number {
+  color:var(--green);
+  font-size:12px;
+  letter-spacing:2px;
+}
+.card h3 {font-size:21px;margin:18px 0 9px}
+.card p {color:var(--muted);font-size:14px}
+.card a {
+  display:inline-block;
+  color:var(--green);
+  margin-top:23px;
+  font-size:13px;
+}
+
+/* PRICE */
+
+.price-box {
+  margin-top:35px;
+  padding:35px;
+  background:linear-gradient(120deg,#17251b,#101713);
+  border:1px solid #34513b;
+  border-radius:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+.price-box p {color:var(--muted);font-size:14px;margin-top:5px}
+
+/* PROCESS */
+
+.process {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:40px;
+}
+.step {
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--panel);
+}
+.step-number {color:var(--green);font-size:13px}
+.step h3 {margin:13px 0 8px}
+.step p {color:var(--muted);font-size:14px}
+
+/* FORM */
+
+.order-form {
+  margin-top:35px;
+  padding:35px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+.form-group {margin-bottom:27px}
+.form-group>label {
+  display:block;
+  margin-bottom:11px;
+  font-size:15px;
+  font-weight:700;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width:100%;
+  padding:15px;
+  background:#090d0a;
+  border:1px solid #354339;
+  border-radius:9px;
+  color:white;
+  outline:none;
+  font-size:14px;
+  transition:.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color:var(--green);
+}
+.form-group textarea {
+  resize:vertical;
+  min-height:120px;
+}
+.form-group select option {background:#111713}
+.check-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.check-option {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:13px;
+  background:#0b100d;
+  border:1px solid var(--border);
+  border-radius:9px;
+  font-size:13px;
+  color:#d2dad4;
+  cursor:pointer;
+  transition:.2s;
+}
+.check-option:has(input:checked) {
+  border-color:var(--green);
+  background:#14251a;
+}
+.check-option input {
+  width:17px;
+  height:17px;
+  accent-color:var(--green);
+  flex-shrink:0;
+}
+.form-submit {width:100%;min-height:52px}
+.form-note {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:14px;
+  text-align:center;
+}
+
+/* PORTFOLIO */
+
+.portfolio-empty {
+  margin-top:30px;
+  padding:65px 25px;
+  border:1px dashed #405044;
+  border-radius:16px;
+  text-align:center;
+  color:var(--muted);
+}
+.portfolio-empty strong {
+  display:block;
+  color:var(--green);
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+/* CONTACTS */
+
+.contact-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:35px;
+}
+.contact-card {
+  display:block;
+  padding:25px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  transition:.25s;
+}
+.contact-card:hover {
+  border-color:var(--green);
+  transform:translateY(-4px);
+}
+.contact-card .contact-icon {
+  font-size:24px;
+  margin-bottom:12px;
+}
+.contact-card strong {display:block;font-size:16px}
+.contact-card span {color:var(--muted);font-size:13px}
+
+/* FOOTER */
+
+footer {
+  padding:30px 0;
+  border-top:1px solid var(--border);
+}
+.footer-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-row p {color:var(--muted);font-size:12px}
+
+/* ANIMATION */
+
+@keyframes appear {
+  from {opacity:0;transform:translateY(20px)}
+  to {opacity:1;transform:translateY(0)}
+}
+.hero-content {animation:appear .8s ease both}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}
+
+/* TABLET */
+
+@media(max-width:900px) {
+  .nav-links {gap:14px}
+  .nav-links a {font-size:12px}
+  .nav>.btn {padding:11px 14px;font-size:12px}
+  .contact-grid {grid-template-columns:1fr 1fr}
+}
+
+/* PHONE */
+
+@media(max-width:650px) {
+  html {scroll-padding-top:75px}
+  .container {width:90%}
+  .nav {
+    min-height:68px;
+    position:relative;
+  }
+  .logo {font-size:24px}
+  .nav>.btn {display:none}
+  .menu-btn {display:block}
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:68px;
+    left:0;
+    width:100%;
+    padding:17px;
+    background:#101713;
+    border:1px solid var(--border);
+    border-radius:12px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    box-shadow:0 15px 35px #0008;
+  }
+  .nav-links.open {display:flex}
+  .nav-links a {
+    padding:13px 8px;
+    font-size:14px;
+    border-bottom:1px solid #26342a;
+  }
+  .nav-links a:last-child {border-bottom:0}
+  .hero {
+    min-height:auto;
+    padding:90px 0 65px;
+  }
+  .hero:before {
+    width:300px;
+    height:300px;
+    right:-130px;
+  }
+  .hero h1 {
+    font-size:clamp(40px,11vw,57px);
+    letter-spacing:-2px;
+    margin:20px 0;
+  }
+  .hero p {font-size:15px}
+  .hero-actions {
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .hero-actions a {width:100%;text-align:center}
+  .hero-bottom {
+    margin-top:48px;
+    gap:20px;
+  }
+  section {padding:65px 0}
+  .cards {grid-template-columns:1fr;gap:13px;margin-top:28px}
+  .card {padding:25px}
+  .card h3 {font-size:19px}
+  .price-box {
+    padding:25px;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .price-box .btn {width:100%}
+  .process {grid-template-columns:1fr;gap:13px;margin-top:28px}
+  .step {padding:21px}
+  .order-form {padding:20px;margin-top:25px}
+  .form-group {margin-bottom:23px}
+  .form-group>label {font-size:14px}
+  .form-group input,
+  .form-group select,
+  .form-group textarea {font-size:16px;padding:14px}
+  .check-grid {grid-template-columns:1fr;gap:9px}
+  .check-option {padding:14px;font-size:14px;min-height:48px}
+  .contact-grid {grid-template-columns:1fr;gap:11px}
+  .contact-card {padding:20px}
+  .portfolio-empty {padding:45px 18px}
+  .footer-row {
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">MD-SITE<span>.</span></a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#prices">Стоимость</a>
+      <a href="#process">Как работаем</a>
+      <a href="#contact">Контакты</a>
+      <a href="#portfolio">Портфолио</a>
+    </nav>
+
+    <a href="#prices" class="btn">Заказать сайт</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Открыть меню" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ГЛАВНЫЙ ЭКРАН -->
+
+<section class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">WEB DEVELOPMENT STUDIO</div>
+
+    <h1>Превращаем ваши идеи в <span>работающие сайты.</span></h1>
+
+    <p>
+      Создаём современные сайты для бизнеса.
+      Разрабатываем с нуля, обновляем и улучшаем
+      существующие проекты.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#prices" class="btn">Рассчитать стоимость →</a>
+      <a href="#services" class="btn-outline">Наши услуги</a>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-stat">
+        <strong>Индивидуально</strong>
+        <span>Подход к каждому проекту</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Современно</strong>
+        <span>Дизайн и технологии</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Удобно</strong>
+        <span>Для телефона и компьютера</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- УСЛУГИ -->
+
+<section id="services">
+  <div class="container">
+    <div class="section-label">ЧТО МЫ ДЕЛАЕМ</div>
+    <h2>Наши услуги</h2>
+    <p class="section-desc">
+      Помогаем бизнесу получить современный и удобный сайт.
+    </p>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-number">01 / СОЗДАНИЕ</div>
+        <h3>Создание сайтов с нуля</h3>
+        <p>Разрабатываем сайты с индивидуальным дизайном и нужными функциями.</p>
+        <a href="#prices">Заказать сайт →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">02 / ДЛЯ БИЗНЕСА</div>
+        <h3>Сайты для бизнеса</h3>
+        <p>Рассказываем о вашей компании, услугах и помогаем получать обращения клиентов.</p>
+        <a href="#prices">Заказать сайт →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">03 / ОБНОВЛЕНИЕ</div>
+        <h3>Переделка старых сайтов</h3>
+        <p>Обновляем внешний вид, структуру и удобство существующих сайтов.</p>
+        <a href="#prices">Обсудить проект →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">04 / ПОДДЕРЖКА</div>
+        <h3>Поддержка и обновление</h3>
+        <p>Помогаем поддерживать сайт в актуальном состоянии и добавлять новые возможности.</p>
+        <a href="#prices">Обсудить проект →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- СТОИМОСТЬ И ЗАЯВКА -->
+
+<section id="prices">
+  <div class="container">
+    <div class="section-label">ВАШ БУДУЩИЙ ПРОЕКТ</div>
+    <h2>Рассчитаем стоимость сайта</h2>
+    <p class="section-desc">
+      Ответьте на несколько вопросов. Мы изучим вашу задачу
+      и свяжемся с вами для обсуждения стоимости.
+    </p>
+
+    <form class="order-form" id="orderForm">
+
+      <div class="form-group">
+        <label>1. Какой сайт вам нужен? *</label>
+        <select name="type" required>
+          <option value="">Выберите тип сайта</option>
+          <option>Сайт для бизнеса</option>
+          <option>Интернет-магазин</option>
+          <option>Сайт-визитка</option>
+          <option>Лендинг</option>
+          <option>Переделка старого сайта</option>
+          <option>Другое</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>2. Для какой сферы нужен сайт?</label>
+        <input name="business" placeholder="Например: барбершоп, ресторан, магазин">
+      </div>
+
+      <div class="form-group">
+        <label>3. Какие функции вам нужны?</label>
+        <div class="check-grid">
+          <label class="check-option"><input type="checkbox" name="features" value="Онлайн-запись">Онлайн-запись</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Фотогалерея">Фотогалерея</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Отзывы клиентов">Отзывы клиентов</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Каталог товаров">Каталог товаров</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Корзина и оплата">Корзина и оплата</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Карта и контакты">Карта и контакты</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Форма обратной связи">Форма обратной связи</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Личный кабинет">Личный кабинет</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Анимации">Анимации</label>
+          <label class="check-option"><input type="checkbox" name="features" value="Другое">Другое</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>4. Какой дизайн предпочитаете?</label>
+        <select name="design">
+          <option>На ваше усмотрение</option>
+          <option>Тёмный и премиальный</option>
+          <option>Светлый и минималистичный</option>
+          <option>Яркий и современный</option>
+          <option>Есть собственный пример</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>5. Какой бюджет планируете? *</label>
+        <select name="budget" required>
+          <option value="">Выберите бюджет</option>
+          <option>До 10 000 ₽</option>
+          <option>10 000–20 000 ₽</option>
+          <option>20 000–40 000 ₽</option>
+          <option>40 000–70 000 ₽</option>
+          <option>Более 70 000 ₽</option>
+          <option>Пока не определился</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>6. Расскажите о своей идее</label>
+        <textarea name="details" placeholder="Что хотите видеть на сайте? Есть ли примеры сайтов, которые вам нравятся?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>7. Ваше имя *</label>
+        <input name="name" placeholder="Как к вам обращаться?" required>
+      </div>
+
+      <div class="form-group">
+        <label>8. Как с вами связаться? *</label>
+        <select name="contact" required>
+          <option value="">Выберите способ связи</option>
+          <option>Telegram</option>
+          <option>WhatsApp</option>
+          <option>Телефон</option>
+          <option>Email</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Ваш контакт *</label>
+        <input name="clientContact" placeholder="@username, номер телефона или email" required>
+      </div>
+
+      <button type="submit" class="btn form-submit">
+        Отправить заявку →
+      </button>
+
+      <p class="form-note" id="formStatus">
+        После нажатия откроется Telegram с подготовленной заявкой.
+        Вам останется проверить её и отправить.
+      </p>
+
+    </form>
+  </div>
+</section>
+
+<!-- КАК РАБОТАЕМ -->
+
+<section id="process">
+  <div class="container">
+    <div class="section-label">НАШ ПОДХОД</div>
+    <h2>Как мы работаем</h2>
+    <p class="section-desc">От первого сообщения до готового сайта.</p>
+
+    <div class="process">
+      <div class="step">
+        <div class="step-number">ШАГ 01</div>
+        <h3>Знакомство</h3>
+        <p>Обсуждаем вашу идею, задачи и пожелания.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">ШАГ 02</div>
+        <h3>Разработка</h3>
+        <p>Создаём дизайн, программируем и проверяем сайт.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">ШАГ 03</div>
+        <h3>Запуск</h3>
+        <p>Проверяем готовый проект и публикуем его.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+
+<section id="contact">
+  <div class="container">
+    <div class="section-label">МЫ НА СВЯЗИ</div>
+    <h2>Давайте обсудим ваш проект</h2>
+    <p class="section-desc">
+      Выберите удобный способ связи. Мы будем рады обсудить вашу идею.
+    </p>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="https://t.me/crpt39" target="_blank" rel="noopener">
+        <div class="contact-icon">✈️</div>
+        <strong>Telegram</strong>
+        <span>@crpt39</span>
+      </a>
+
+      <a class="contact-card" href="https://wa.me/qr/IZK7CXV2F3Y5P1" target="_blank" rel="noopener">
+        <div class="contact-icon">💬</div>
+        <strong>WhatsApp</strong>
+        <span>Написать нам</span>
+      </a>
+
+      <a class="contact-card" href="tel:+79622559777">
+        <div class="contact-icon">📞</div>
+        <strong>Телефон</strong>
+        <span>+7 962 255-97-77</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ПОРТФОЛИО ПОСЛЕДНИМ -->
+
+<section id="portfolio">
+  <div class="container">
+    <div class="section-label">НАШИ РАБОТЫ</div>
+    <h2>Портфолио</h2>
+    <div class="portfolio-empty">
+      <strong>Скоро здесь появятся наши проекты.</strong>
+      <p>Мы готовим подборку работ MD-SITE.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <a href="#" class="logo">MD-SITE<span>.</span></a>
+    <p>© 2026 MD-SITE. Все права защищены.</p>
+    <p>Разработка сайтов</p>
+  </div>
+</footer>
+
+<script>
+/* МОБИЛЬНОЕ МЕНЮ */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", function() {
+  const opened = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", opened);
+  menuBtn.textContent = opened ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function() {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+/* ОТПРАВКА ЗАЯВКИ */
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = new FormData(this);
+  const features = form.getAll("features");
+
+  const message =
+`НОВАЯ ЗАЯВКА — MD-SITE
+
+Имя: ${form.get("name")}
+Тип сайта: ${form.get("type")}
+Сфера бизнеса: ${form.get("business") || "Не указана"}
+
+Нужные функции:
+${features.length ? features.join(", ") : "Не выбраны"}
+
+Дизайн: ${form.get("design")}
+Бюджет: ${form.get("budget")}
+
+Пожелания:
+${form.get("details") || "Не указаны"}
+
+Способ связи: ${form.get("contact")}
+Контакт клиента: ${form.get("clientContact")}`;
+
+  const telegramURL =
+    "https://t.me/crpt39?text=" + encodeURIComponent(message);
+
+  document.getElementById("formStatus").textContent =
+    "Открываем Telegram. Проверьте текст заявки и нажмите «Отправить».";
+
+  window.location.href = telegramURL;
+});
+</script>
+
+</body>
+</html>
